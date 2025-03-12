@@ -1,0 +1,53 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package com.mycompany.practicas;
+
+/**
+ *
+ * @author NACHO
+ */
+public class Figuras {
+    // Área del círculo
+    static double area(double radio) {
+        return Math.PI * radio * radio;
+    }
+
+    // Área del rectángulo
+    static double area(double base, double altura) {
+        return base * altura;
+    }
+
+    // Área del triángulo rectángulo
+    static double area(double base, double altura, boolean esTriangulo) {
+        if (esTriangulo) {
+            return (base * altura) / 2;
+        }
+        return -1; // Retorno inválido si el tercer parámetro no es `true`
+    }
+
+    // Área del trapecio
+    static double area(double baseMayor, double baseMenor, double altura, boolean esTrapecio) {
+        if (esTrapecio) {
+            return ((baseMayor + baseMenor) * altura) / 2;
+        }
+        return -1;
+    }
+
+    // Área del pentágono (con apotema)
+    static double area(double perimetro, double apotema, int lados) {
+        if (lados == 5) {
+            return (perimetro * apotema) / 2;
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+        System.out.println("Área del círculo: " + area(5));
+        System.out.println("Área del rectángulo: " + area(4, 6));
+        System.out.println("Área del triángulo: " + area(3, 5, true));
+        System.out.println("Área del trapecio: " + area(6, 4, 5, true));
+        System.out.println("Área del pentágono: " + area(25, 7, 5));
+    }
+    
+}
