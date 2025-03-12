@@ -1,0 +1,39 @@
+from typing import overload
+
+class Figuras:
+    @overload
+    def area(self, radio: float) -> float: ...
+    
+    @overload
+    def area(self, base: float, altura: float) -> float: ...
+    
+    @overload
+    def area(self, base: float, altura: float, es_triangulo: bool) -> float: ...
+    
+    @overload
+    def area(self, base_mayor: float, base_menor: float, altura: float, es_trapecio: bool) -> float: ...
+    
+    @overload
+    def area(self, perimetro: float, apotema: float, lados: int) -> float: ...
+
+    def area(self, *args) -> float:
+        if len(args) == 1:  # Círculo
+            return 3.1416 * args[0] ** 2
+        elif len(args) == 2:  # Rectángulo
+            return args[0] * args[1]
+        elif len(args) == 3 and isinstance(args[2], bool):  # Triángulo rectángulo
+            return (args[0] * args[1]) / 2 if args[2] else -1
+        elif len(args) == 4 and isinstance(args[3], bool):  # Trapecio
+            return ((args[0] + args[1]) * args[2]) / 2 if args[3] else -1
+        elif len(args) == 3 and isinstance(args[2], int) and args[2] == 5:  # Pentágono
+            return (args[0] * args[1]) / 2
+        else:
+            return -1  # Parámetros inválidos
+
+# Pruebas
+fig = Figuras()
+print("Área del círculo:", fig.area(5))
+print("Área del rectángulo:", fig.area(4, 6))
+print("Área del triángulo:", fig.area(3, 5, True))
+print("Área del trapecio:", fig.area(6, 4, 5, True))
+print("Área del pentágono:", fig.area(25, 7, 5))
